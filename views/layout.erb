@@ -34,15 +34,15 @@
       <ul class="nav">
         <!-- TODO add l18n -->
         <!-- <li class="active"><a href="#">Home</a></li> -->
-        <li><a href="/">Passwort ändern</a></li>
+        <li><a href="/"><%= t.nav.change_password%></a></li>
         <!-- <li><a href="#contact">Domains</a></li> -->
-        <li><a class="nav-mailbox" href="mailboxes">Postfächer</a></li>
-        <li><a class="nav-forwarding" href="forwardings">Weiterleitungen</a></li>
+        <li><a class="nav-mailbox" href="mailboxes"><%= t.nav.mailboxes%></a></li>
+        <li><a class="nav-forwarding" href="forwardings"><%= t.nav.forwardings%></a></li>
       </ul>
       <form action="" class="pull-right">
-        <input class="input-small" type="text" placeholder="Login">
-        <input class="input-small" type="password" placeholder="Passwort">
-        <button id="login" class="btn" type="submit">Anmelden</button>
+        <input class="input-small" type="text" placeholder="<%= t.nav.login_field_placeholder %>">
+        <input class="input-small" type="password" placeholder="<%= t.nav.password_field_placeholder %>">
+        <button id="login" class="btn" type="submit"><%= t.nav.login%></button>
       </form>
     </div>
   </div>

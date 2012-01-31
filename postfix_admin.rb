@@ -1,11 +1,17 @@
 require 'sinatra'
+require 'sinatra/r18n'
 require 'sequel'
 require 'json'
 # TODO config public directory
 
 # TODO parse config.yml
 
+
 DB = Sequel.connect(:adapter=>'mysql2', :host=>'localhost', :database=>'maildb', :user=>'mail', :password=>'mail')
+
+before do
+  session[:locale] = params[:locale] if params[:locale]
+end
 
 # ROOT
 get '/' do
