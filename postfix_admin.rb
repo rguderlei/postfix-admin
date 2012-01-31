@@ -14,12 +14,12 @@ end
 
 # Page for FORWARDINGS
 get '/forwardings' do
-  render :forwardings
+  erb :forwardings
 end
 
 # Page for MAILBOXES
-get '/forwardings' do
-  render :mailboxes
+get '/mailboxes' do
+  erb :mailboxes
 end
 
 
@@ -53,7 +53,7 @@ end
 # Services for MAILBOXES
 # TODO : only email, no pwd over the wire
 get '/mailboxes', :provides=>'json' do
-  return DB[:users].all.to_json
+  return DB[:users].select(:email).all.to_json
 end
 
 post '/mailboxes', :provides=>'json' do
@@ -63,21 +63,23 @@ post '/mailboxes', :provides=>'json' do
   password_confirmation = params["password_confirmation"].nil? ? bodyParams["password_confirmation"]: params["password_confirmation"]
 
   if password.eql?(password_confirmation) then
-    DB[:users].insert(:email => email, :password => destination)
+    DB[:users].insert(:email => email, :password => :Encrypt.sql_function(password))
   end
 end
 
-get  '/mailboxes/:user', :provides=>'json' do |user|
-  DB[:users].filter(:email => user).first.to_json
+get '/mailboxes/:user', :provides=>'json' do |user|
+  DB[:users].select(:email).filter(:email => user).first.to_json
 end
 
-post  '/mailboxes/:user', :provides=>'json' do |user|
+post '/mailboxes/:user', :provides=>'json' do |user|
   bodyParams = JSON.parse( request.body.read)
-  destination = params["destination"].nil? ? bodyParams["destination"]: params["destination"]
-  DB[:users].filter(:email=>user).update(:destination => destination)
+  password = params["password"].nil? ? bodyParams["password"]: params["password"]
+  password_confirmation = params["password_confirmation"].nil? ? bodyParams["password_confirmation"]: params["password_confirmation"]
+
+  DB[:users].filter(:email=>user).update(:password => :Encrypt.sql_function(password))
 end
 
-delete  '/mailboxes/:user', :provides=>'json' do |user|
+delete '/mailboxes/:user', :provides=>'json' do |user|
   DB[:users].filter(:email => user).delete
 end
 
