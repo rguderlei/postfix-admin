@@ -32,10 +32,7 @@
     <div class="container">
       <a class="brand" href="/">Postfix Admin</a>
       <ul class="nav">
-        <!-- TODO add l18n -->
-        <!-- <li class="active"><a href="#">Home</a></li> -->
         <li><a href="/"><%= t.nav.change_password%></a></li>
-        <!-- <li><a href="#contact">Domains</a></li> -->
         <li><a class="nav-mailbox" href="mailboxes"><%= t.nav.mailboxes%></a></li>
         <li><a class="nav-forwarding" href="forwardings"><%= t.nav.forwardings%></a></li>
       </ul>
@@ -52,13 +49,12 @@
 
   <div class="content">
     <div class="page-header">
-      <h1>Postfix Admin <!-- <small>Supporting text or tagline</small>--> </h1>
+      <h1>Postfix Admin <small>Your friendly virtual mail admin</small> </h1>
     </div>
 
     <%= yield %>
 
     <footer>
-      <!-- <p>&copy; Company 2012</p> -->
       <p>Licence Info & github repo goes here</p>
     </footer>
 
