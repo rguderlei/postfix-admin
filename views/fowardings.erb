@@ -1,6 +1,6 @@
 <script type="text/x-handlebars">
   {{#each App.ForwardingController.forwardings}}
-  {{#view App.ForwardingDetail contentBinding="this"}}
+  {{#view App.ForwardingListEntry contentBinding="this"}}
   {{#with content}}
   <div class="span3">{{name}}</div>
   <div class="span4">{{email}}</div>

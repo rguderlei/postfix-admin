@@ -1,0 +1,11 @@
+<script type="text/x-handlebars">
+  {{#each App.MailboxController.mailboxes}}
+  {{#view App.MailboxListEntry contentBinding="this"}}
+  {{#with content}}
+  <div class="span3">{{name}}</div>
+  <div class="span4">{{email}}</div>
+  <div class="span4">Buttons here</div>
+  {{/with}}
+  {{/view}}
+  {{/each}}
+</script>
