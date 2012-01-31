@@ -1,0 +1,4 @@
+database:
+  name: maildb
+  user: mail
+  password: mail
