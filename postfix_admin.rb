@@ -2,12 +2,18 @@ require 'sinatra'
 require 'sinatra/r18n'
 require 'sequel'
 require 'json'
+require 'yaml'
 # TODO config public directory
 
 # TODO parse config.yml
 
+config = Yaml.load_file('conf/config.yml') unless defined? config
 
-DB = Sequel.connect(:adapter=>'mysql2', :host=>'localhost', :database=>'maildb', :user=>'mail', :password=>'mail')
+DB = Sequel.connect(:adapter=>'mysql2', :host=>config['database']['host'], :database=>config['database']['name'], :user=>config['database']['user'], :password=>config['database']['password'])
+
+use Rack::Auth::Basic do |username, password|
+  username == 'admin' && password == 'secret'
+end
 
 before do
   session[:locale] = params[:locale] if params[:locale]
