@@ -3,20 +3,41 @@ require 'sinatra/r18n'
 require 'sequel'
 require 'json'
 require 'yaml'
-# TODO config public directory
 
-# TODO parse config.yml
+configure do
+  config = YAML.load_file('conf/config.yml')
 
-config = Yaml.load_file('conf/config.yml') unless defined? config
+  set :database_host => config['database']['host']
+  set :database_name => config['database']['name']
+  set :database_user => config['database']['user']
+  set :database_password => config['database']['password']
 
-DB = Sequel.connect(:adapter=>'mysql2', :host=>config['database']['host'], :database=>config['database']['name'], :user=>config['database']['user'], :password=>config['database']['password'])
+  set :admin_name =>  config['auth']['username']
+  set :admin_password => config['auth']['password']
 
-use Rack::Auth::Basic do |username, password|
-  username == 'admin' && password == 'secret'
+  DB = Sequel.connect(:adapter=>'mysql2', :host=> settings.database_host , :database=>settings.database_name,
+                      :user=>settings.database_user, :password=>settings.database_password)
+end
+
+
+
+helpers do
+  def protected!
+    unless authorized?
+      response['WWW-Authenticate'] = %(Basic realm="Testing HTTP Auth")
+      throw(:halt, [401, "Not authorized\n"])
+    end
+  end
+
+  def authorized?
+    @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+    @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == [settings.admin_name, settings.admin_password]
+  end
 end
 
 before do
   session[:locale] = params[:locale] if params[:locale]
+  protected! unless request.path_info == "/"
 end
 
 # ROOT
@@ -63,7 +84,6 @@ delete '/forwardings/:email', :provides=>'json' do  |email|
 end
 
 # Services for MAILBOXES
-# TODO : only email, no pwd over the wire
 get '/mailboxes', :provides=>'json' do
   return DB[:users].select(:email).all.to_json
 end
@@ -87,8 +107,9 @@ post '/mailboxes/:user', :provides=>'json' do |user|
   bodyParams = JSON.parse( request.body.read)
   password = params["password"].nil? ? bodyParams["password"]: params["password"]
   password_confirmation = params["password_confirmation"].nil? ? bodyParams["password_confirmation"]: params["password_confirmation"]
-
-  DB[:users].filter(:email=>user).update(:password => :Encrypt.sql_function(password))
+  if password.eql?(password_confirmation) then
+    DB[:users].filter(:email=>user).update(:password => :Encrypt.sql_function(password))
+  end
 end
 
 delete '/mailboxes/:user', :provides=>'json' do |user|
