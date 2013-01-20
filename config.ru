@@ -1,6 +1,12 @@
 require "bundler/setup"
 Bundler.require(:default)
 
+require 'sinatra'
+require 'sinatra/r18n'
+require 'sequel'
+require 'json'
+require 'yaml'
+
 require 'sprockets'
 require File.expand_path('../app', __FILE__)
 

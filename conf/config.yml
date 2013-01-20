@@ -1,0 +1,19 @@
+database:
+  host: localhost
+  name: maildb
+  user: mail
+  password: mail
+
+auth:
+  username: admin
+  password: admin
+
+forwardings:
+  table: forwardings
+  source: source
+  destination: destination
+
+users:
+  table: users
+  email: email
+  password: password

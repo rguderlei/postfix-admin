@@ -1,0 +1,7 @@
+nav:
+  mailboxes: Postfächer
+  forwardings: Weiterleitungen
+  change_password: Passwort ändern
+  login: Anmelden
+  login_field_placeholder: Benutzername
+  password_field_placeholder: Passwort

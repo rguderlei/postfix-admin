@@ -1,0 +1,38 @@
+<h2>
+  Password ändern
+</h2>
+
+<form id="change_password_form" class="form-horizontal" action="/mailboxes" method="get">
+  <fieldset>
+    <div class="control-group">
+      <label class="control-label" for="email">Email-Adresse</label>
+
+      <div class="controls">
+        <input name="email" type="text"> </input>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="old_password">Altes Passwort:</label>
+
+      <div class="controls">
+        <input name="old_password" type="password"> </input>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="password">Neues Passwort:</label>
+
+      <div class="controls">
+        <input name="password" type="password"> </input>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="password_confirmation">Neues Passwort wiederholen:</label>
+
+      <div class="controls">
+        <input name="password_confirmation" type="password"> </input>
+      </div>
+    </div>
+    <input id="change_password" type="submit" class="btn-primary">     </input>
+
+  </fieldset>
+</form>

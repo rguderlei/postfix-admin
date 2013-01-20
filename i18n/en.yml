@@ -1,0 +1,7 @@
+nav:
+  mailboxes: Virtual users
+  forwardings: Forwardings
+  change_password: Change password
+  login: Login
+  login_field_placeholder: Login
+  password_field_placeholder: Password

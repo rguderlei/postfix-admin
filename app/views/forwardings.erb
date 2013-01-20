@@ -1,0 +1,13 @@
+<h2><%= t.nav.forwardings %></h2>
+
+<script type="text/x-handlebars">
+  {{#view App.ForwardingListEntry }}
+  {{#each forwardings}}
+  <div class="row hover">
+  <div class="span3">{{source}}</div>
+  <div class="span5">{{formatted_destination}}</div>
+  <div class="span3">Buttons here</div>
+  </div>
+  {{/each}}
+  {{/view}}
+</script>
