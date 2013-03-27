@@ -1,29 +1,27 @@
-Ember-Sinatra is a project skeleton for an Ember application with a Sinatra backend.
+Postfix Admin
+=============
 
-Just ```bundle install``` to install dependencies and ```shotgun``` to launch the server.
+Sometimes, this will be a simple web frontend to manage an ISP style Postfix/Dovecot installation.
+The project is still under heavy development and is far from being production ready.
 
-The project structure goes like this :
+Basically, the intention of the project is to manage virtual mailboxes and forwardings.
 
-```
-├── app
-│   ├── assets
-│   │   ├── images
-│   │   ├── javascripts --> the Ember application files
-│   │   │   ├── controllers
-│   │   │   ├── models
-│   │   │   |── views
-│   │   │   ├── vendor
-│   │   │   │   ├── ember.js
-│   │   │   │   ├── handlebars.js
-│   │   │   │   └── jquery.js
-│   │   │   ├── environment.js
-│   │   │   ├── router.js
-│   │   │   ├── app.js
-│   │   └── stylesheets
-│   └── views
-│       └── layout.erb
-├── app.rb -> the Sinatra application
-└── test
-```
+Assumptions
+-----------
 
-Javascripts files of the Ember app are served in one file through Sprockets.
+Postfix, saslauthd, and dovecot are using a mysql backend for the configuration of virtual
+mailboxes and forwardings.
+
+the database schema for mailboxes and forwardings is given by
+    CREATE TABLE forwardings (source varchar(80) NOT NULL, destination TEXT NOT NULL, PRIMARY KEY (source) );
+    CREATE TABLE users (email varchar(80) NOT NULL, password varchar(20) NOT NULL, PRIMARY KEY (email) );
+
+Technology
+----------
+
+The project is based on
+- [Ruby](http://www.ruby-lang.org)
+- [Sinatra](http://www.sinatrarb.com)
+- [Sequel](http://sequel.rubyforge.org)
+- [Twitter Bootstrap](http://twitter.github.com/bootstrap)
+- [JQuery](http://jquery.org)
