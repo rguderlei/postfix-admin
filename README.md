@@ -13,8 +13,10 @@ Postfix, saslauthd, and dovecot are using a mysql backend for the configuration 
 mailboxes and forwardings.
 
 the database schema for mailboxes and forwardings is given by
-```CREATE TABLE forwardings (source varchar(80) NOT NULL, destination TEXT NOT NULL, PRIMARY KEY (source) );
-CREATE TABLE users (email varchar(80) NOT NULL, password varchar(20) NOT NULL, PRIMARY KEY (email) );```
+```
+CREATE TABLE forwardings (source varchar(80) NOT NULL, destination TEXT NOT NULL, PRIMARY KEY (source) );
+CREATE TABLE users (email varchar(80) NOT NULL, password varchar(20) NOT NULL, PRIMARY KEY (email) );
+```
 
 Technology
 ----------
