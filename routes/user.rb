@@ -1,6 +1,7 @@
 class PostfixAdmin < Sinatra::Application
   # Page for MAILBOXES
   get '/mailboxes', :provides => 'html' do
+    @users = User.all()
     erb :mailboxes
   end
 

@@ -1,6 +1,7 @@
 class PostfixAdmin < Sinatra::Application
    # Page for FORWARDINGS
    get '/forwardings', :provides => 'html' do
+     @forwardings = Forwarding.all
      erb :forwardings
    end
 
