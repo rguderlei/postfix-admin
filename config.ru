@@ -1,6 +1,6 @@
 # TODO rackup & bundler??
 require 'rubygems'
-require 'postfix_admin'
-set :run, false
+root = ::File.dirname(__FILE__)
+require ::File.join( root, 'postfix_admin' )
 set :environment, :production
-run Sinatra::Application
+run PostfixAdmin.new

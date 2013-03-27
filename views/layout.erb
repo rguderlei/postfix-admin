@@ -15,8 +15,10 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-custom.css" rel="stylesheet">
 
-  <script src="js/jquery-1.6.1.min.js"></script>
-  <script src="js/ember-0.9.4.js"></script>
+  <script src="js/jquery-1.7.2.min.js"></script>
+  <script src="js/jquery.form.js"></script>
+  <script src="js/ember-0.9.8.1.js"></script>
+  <script src="js/ember-data.min.js"></script>
   <script src="js/application.js"></script>
 
   <!-- Le fav and touch icons -->
@@ -27,8 +29,8 @@
 </head>
 
 <body>
-<div class="topbar">
-  <div class="fill">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="/">Postfix Admin</a>
       <ul class="nav">
@@ -36,11 +38,6 @@
         <li><a class="nav-mailbox" href="mailboxes"><%= t.nav.mailboxes%></a></li>
         <li><a class="nav-forwarding" href="forwardings"><%= t.nav.forwardings%></a></li>
       </ul>
-      <form action="" class="pull-right">
-        <input class="input-small" type="text" placeholder="<%= t.nav.login_field_placeholder %>">
-        <input class="input-small" type="password" placeholder="<%= t.nav.password_field_placeholder %>">
-        <button id="login" class="btn" type="submit"><%= t.nav.login%></button>
-      </form>
     </div>
   </div>
 </div>

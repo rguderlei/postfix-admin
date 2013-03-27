@@ -1,14 +1,12 @@
-<h2><%= t.nav.mailboxes %></h2>
+<h2 xmlns="http://www.w3.org/1999/html"><%= t.nav.mailboxes %></h2>
 
 
 <script type="text/x-handlebars">
-  {{#each App.MailboxController.mailboxes}}
-  {{#view App.MailboxListEntry contentBinding="this"}}
-  {{#with content}}
+  {{#view App.MailboxListEntry}}
+  {{#each mailboxes}}
   <div class="span3">{{name}}</div>
   <div class="span4">{{email}}</div>
   <div class="span4">Buttons here</div>
-  {{/with}}
-  {{/view}}
   {{/each}}
+  {{/view}}
 </script>

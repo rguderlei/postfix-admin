@@ -38,3 +38,7 @@ html, body {
  .topbar .btn {
    border: 0;
  }
+
+ .highlight:hover {
+     background-color: #f5f5f5;
+ }
