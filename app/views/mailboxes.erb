@@ -1,8 +1,24 @@
 <h2 xmlns="http://www.w3.org/1999/html"><%= t.nav.mailboxes %></h2>
 
+<div class="row">
+  <div class="span6">
+    <a id="newForwarding" class="btn btn-primary" href="#">
+      <i class="icon-plus-sign"></i> <%= t.mailboxes.new %>
+    </a>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <hr>
+  </div>
+</div>
+
 <% @users.each { |user| %>
     <div class="row">
       <div class="span4"><%= user.email %></div>
-      <div class="span4">Buttons here</div>
+      <div class="span4">
+        <a href="#"><i class="icon-pencil"></i></a>
+        <a href="#"><i class="icon-minus-sign"></i> </a>
+      </div>
     </div>
 <% } %>

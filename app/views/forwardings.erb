@@ -1,9 +1,26 @@
-<h2><%= t.nav.forwardings %></h2>
+<h2><%= t.nav.forwardings %> </h2>
+<div class="row">
+  <div class="span6">
+    <a id="newForwarding" class="btn btn-primary" href="#">
+      <i class="icon-plus-sign"></i> <%= t.forwardings.new %>
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <hr>
+  </div>
+</div>
 
 <% @forwardings.each { |forwarding| %>
     <div class="row">
-      <div class="span3"><%= forwarding.source %></div>
+      <div class="span3" style="vertical-align: middle"><%= forwarding.source %></div>
       <div class="span4"><%= forwarding.destination %></div>
-      <div class="span4">Buttons here</div>
+      <div class="span4">
+        <a href="#"><i class="icon-pencil"></i></a>
+        <a href="#"><i class="icon-minus-sign"></i> </a>
+      </div>
+
     </div>
 <% } %>

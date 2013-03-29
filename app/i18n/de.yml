@@ -5,3 +5,6 @@ nav:
   login: Anmelden
   login_field_placeholder: Benutzername
   password_field_placeholder: Passwort
+
+forwardings:
+  new: neue Weiterleitung
