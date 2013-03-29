@@ -1,0 +1,28 @@
+<div id="newForwarding" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t.forwardings.new %></h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" data-async data-target="#newForwarding" id="newForwardingForm" action="../api/forwardings" method="post">
+      <fieldset>
+      <div class="control-group">
+        <label class="control-label" for="source"><%= t.forwardings.source %></label>
+        <div class="controls">
+          <input type="text" id="source" name="source">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="destination"><%= t.forwardings.destination %></label>
+        <div class="controls">
+          <input type="text" id="destination" name="destination">
+        </div>
+      </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true"><%= t.actions.cancel %></button>
+    <button class="btn btn-primary" id="submitNewForwarding"><%=  t.actions.save %></button>
+  </div>
+</div>

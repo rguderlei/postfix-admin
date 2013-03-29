@@ -8,3 +8,12 @@ nav:
 
 forwardings:
   new: neue Weiterleitung
+  source: Weiterleitung von
+  destination: Weiterleitung an
+
+mailboxes:
+  new: neues Postfach
+
+actions:
+  cancel: Abbrechen
+  save: Speichern

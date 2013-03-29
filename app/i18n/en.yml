@@ -8,3 +8,12 @@ nav:
 
 forwardings:
   new: add forwarding
+  source: Source
+  destination: Destination
+
+mailboxes:
+  new: add mailbox
+
+actions:
+  cancel: Cancel
+  save: Save
