@@ -1,7 +1,7 @@
-- use services instead of mockups (forwardings, mailboxes)
-- edit dialogs
-- new forwarding/mailbox
-- delete forwarding/mailbox
-- include icons
-- move change password from the start page to somewhere else
+- new forwarding: bind methods to icons
+- i18n: confirmation dialog / delete forwarding
+- edit forwarding/mailbox
+- new mailbox
+- delete mailbox
 - use nav bar input to log in
+- use warden etc. for auth (e.g. to reuse existing user database)
