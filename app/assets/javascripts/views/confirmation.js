@@ -1,4 +1,7 @@
 /**
+
+ source https://gist.github.com/rudyryk/2894223
+
  Copyright (C) 2012 Alexey Kinyov <rudy@05bit.com>
 
  Permission is hereby granted, free of charge, to any person obtaining

@@ -15,41 +15,8 @@ $("#submitNewForwarding").click(function(e) {
         return false;
     });
 
-
     return false;
 });
-
-var deleteForwarding = function(email) {
-    var that = this;
-
-    $.ajax({
-        type: 'DELETE',
-        url: '../api/forwardings/' + email,
-        dataType: 'text' ,
-        success: function(){
-            $(that).closest('.row').remove();
-        },
-        error: function(resp){
-            alert(resp);
-        }
-    });
-};
-
-/*
-
-$('#confirmation').bind('show', function() {
-    var id = $(this).data('email'),
-        removeBtn = $(this).find('.btn-danger');
-
-    removeBtn.click(deleteForwarding(id));
-
-}).modal({ backdrop: true });
-
-$('.deleteForwarding').click(function(e) {
-    e.preventDefault();
-    var id = $(this).data('email');
-    $('#confirmation').data('email', id).modal('show');
-}); */
 
 $('.deleteForwarding').click(function(e) {
     var id = $(this).data('email');
