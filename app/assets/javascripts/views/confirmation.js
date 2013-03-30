@@ -66,6 +66,9 @@ function _confirm(options) {
 
     var url = options.url ? options.url : '';
     var data = options.data ? options.data : '';
+    var datatype = options.datatype ? options.datatype : 'json';
+    var httptype = options.httptype ? options.httptype : 'POST';
+
     var ok = options.ok ? options.ok : 'Ok';
     var cancel = options.cancel ? options.cancel : 'Cancel';
     var title = options.title
@@ -89,7 +92,8 @@ function _confirm(options) {
             $.ajax({
                 url: url,
                 data: data,
-                type: 'POST',
+                type: httptype,
+                dataType: datatype,
             }).done(function(result) {
                     $deferred.resolve(result);
                 }).fail(function() {

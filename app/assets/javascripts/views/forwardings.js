@@ -50,3 +50,19 @@ $('.deleteForwarding').click(function(e) {
     var id = $(this).data('email');
     $('#confirmation').data('email', id).modal('show');
 }); */
+
+$('.deleteForwarding').click(function(e) {
+    var id = $(this).data('email');
+    var that = this;
+
+    _confirm({
+       url: '../api/forwardings/' + id,
+       httptype: 'DELETE',
+       datatype: 'text',
+       title: 'Delete forwarding',
+       text: 'Are you sure?',
+       ok: 'Delete'
+    }).done(function(){
+            $(that).closest('.row').remove();
+    });
+});
