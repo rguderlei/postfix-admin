@@ -33,10 +33,12 @@ class PostfixAdmin < Sinatra::Application
      bodyParams = JSON.parse( request.body.read)
      destination = params["destination"].nil? ? bodyParams["destination"]: params["destination"]
      DB[:forwardings].filter(:source=>email).update(:destination => destination)
+     200
    end
 
    delete '/api/forwardings/:email', :provides=>'json' do  |email|
      DB[:forwardings].filter(:source => email).delete
+     200
    end
 
 end

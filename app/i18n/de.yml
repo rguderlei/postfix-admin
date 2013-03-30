@@ -17,3 +17,4 @@ mailboxes:
 actions:
   cancel: Abbrechen
   save: Speichern
+  delete: Löschen
