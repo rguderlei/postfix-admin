@@ -16,13 +16,21 @@
   </div>
 </div>
 
+<script id="forwardingEditTemplate" type="text/x-jquery-tmpl">
+  <form class="form-inline">
+    <input type="text" class="input-small" placeholder="Email" name="destination" value="{1}">
+    <button type="submit" class="btn btn-primary" data-email="{0}"><%=  t.actions.save %></button>
+    <button class="btn btn-secondary" data-destination="{1}"><%=  t.actions.cancel %></button>
+  </form>
+</script>
+
 <div id="forwardingsList">
 <% @forwardings.each { |forwarding| %>
     <div class="row">
       <div class="span4"><%= forwarding.source %></div>
-      <div class="span6"><%= forwarding.destination %></div>
+      <div class="span6 editable"><%= forwarding.destination %></div>
       <div class="span2">
-        <a href="#"><i class="icon-pencil"></i></a>
+        <a class="editForwarding" data-email="<%= forwarding.source %>"><i class="icon-pencil"></i></a>
         <a class="deleteForwarding" href="#" data-email="<%= forwarding.source %>"><i class="icon-minus-sign"></i></a>
       </div>
     </div>

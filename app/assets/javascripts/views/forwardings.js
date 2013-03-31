@@ -18,18 +18,47 @@ $("#submitNewForwarding").click(function(e) {
     return false;
 });
 
-$('.deleteForwarding').click(function(e) {
+var deleteForwarding = function() {
     var id = $(this).data('email');
     var that = this;
 
     _confirm({
-       url: '../api/forwardings/' + id,
-       httptype: 'DELETE',
-       datatype: 'text',
-       title: 'Delete forwarding',
-       text: 'Are you sure?',
-       ok: 'Delete'
+        url: '../api/forwardings/' + id,
+        httptype: 'DELETE',
+        datatype: 'text',
+        title: 'Delete forwarding',
+        text: 'Are you sure?',
+        ok: 'Delete'
     }).done(function(){
             $(that).closest('.row').remove();
-    });
-});
+        });
+};
+
+$('.deleteForwarding').click(deleteForwarding);
+
+var cancelEditing = function(){
+    var destination = $(this).closest('.row').find('.editable');
+    var destValue = $(this).data('destination');
+
+    destination.empty();
+    destination.text(destValue);
+};
+
+var saveEditing = function(){
+   alert("save");
+};
+
+var editForwarding = function(){
+    var destination = $(this).closest('.row').find('.editable');
+    var destValue = destination.text();
+    var sourceValue = $(this).data('email');
+
+    destination.empty();
+    var template = $( "#forwardingEditTemplate" ).html()
+    var processedTemplate = template.format( sourceValue, destValue);
+    destination.append(processedTemplate);
+    destination.find(".btn-primary").click(saveEditing);
+    destination.find(".btn-secondary").click(cancelEditing);
+}
+
+$('.editForwarding').click(editForwarding);
