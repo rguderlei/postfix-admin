@@ -1,7 +1,7 @@
 Postfix Admin
 =============
 
-Sometimes, this will be a simple web frontend to manage an ISP style Postfix/Dovecot installation.
+Some day, this will be a simple web frontend to manage an ISP style Postfix/Dovecot installation.
 The project is still under heavy development and is far from being production ready.
 
 Basically, the intention of the project is to manage virtual mailboxes and forwardings.
