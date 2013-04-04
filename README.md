@@ -27,3 +27,7 @@ The project is based on
 - [Sequel](http://sequel.rubyforge.org)
 - [Twitter Bootstrap](http://twitter.github.com/bootstrap)
 - [JQuery](http://jquery.org)
+
+License
+-------
+The project is released under the [MIT](http://opensource.org/licenses/MIT) license.
