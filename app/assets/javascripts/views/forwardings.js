@@ -45,7 +45,15 @@ var cancelEditing = function(){
 };
 
 var saveEditing = function(){
-   alert("save");
+    var source = $(this).data('email');
+    var destLocation = $(this).closest(".row").find(".editable");
+    var data = $(this).closest(".form-inline").serializeObject();
+    data.source = source;
+
+    $.post('../api/forwardings/' + source, JSON.stringify(data), function(response) {
+        destLocation.empty();
+        destLocation.text(data.destination);
+    }, 'text');
 };
 
 var editForwarding = function(){
