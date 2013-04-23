@@ -10,7 +10,18 @@ var submitNewForwarding = function() {
         //$('body').removeClass('modal-open');
         //$('.modal-backdrop').remove();
 
-        $('#forwardingsList').append('<div class="row"><div class="span4">' + response.forwarding.source + '</div><div class="span6">' + response.forwarding.destination + '</div><div class="span2"><a href="#"><i class="icon-pencil"></i></a> <a class="deleteForwarding" href="#" data-email="<%= forwarding.source %>"><i class="icon-minus-sign"></i></a></div></div>');
+        var line = $('<div class="row"><div class="span4">' +
+            response.forwarding.source + '</div><div class="span6 editable">' +
+            response.forwarding.destination +
+            '</div><div class="span2"><a class="editForwarding" data-email="' +
+            response.forwarding.source +
+            '"><i class="icon-pencil"></i></a> <a class="deleteForwarding" href="#" data-email="' +
+            response.forwarding.source
+            + '"><i class="icon-minus-sign"></i></a></div></div>');
+        line.find('.editForwarding').click(editForwarding);
+        line.find('.deleteForwarding').click(deleteForwarding);
+
+        $('#forwardingsList').append(line);
 
         return false;
     });
