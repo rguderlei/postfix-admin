@@ -1,10 +1,5 @@
-<div id="newForwarding" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel"><%= t.forwardings.new %></h3>
-  </div>
-  <div class="modal-body">
-    <form class="form-horizontal" data-async data-target="#newForwarding" id="newForwardingForm" action="../api/forwardings" method="post">
+<script id="newForwardingTemplate" type="text/x-jquery-tmpl">
+<form class="form-horizontal" id="newForwardingForm" action="../api/forwardings" method="post">
       <fieldset>
       <div class="control-group">
         <label class="control-label" for="source"><%= t.forwardings.source %></label>
@@ -13,16 +8,26 @@
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="destination"><%= t.forwardings.destination %></label>
+        <label class="control-label" for="destination"><%= t.forwardings.source %></label>
         <div class="controls">
           <input type="text" id="destination" name="destination">
         </div>
       </div>
       </fieldset>
-    </form>
+</form>
+</script>
+
+
+<div class="modal hide fade" id="newForwardingDialog">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3><%= t.forwardings.new %></h3>
+  </div>
+  <div class="modal-body">
+    &nbsp;
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true"><%= t.actions.cancel %></button>
-    <button class="btn btn-primary" id="submitNewForwarding" data-dismiss="modal" data-target="#newForwarding"><%=  t.actions.save %></button>
+    <a href="#" class="btn btn-primary">Ok</a>
+    <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
   </div>
 </div>

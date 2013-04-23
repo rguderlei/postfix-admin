@@ -1,14 +1,14 @@
-$("#submitNewForwarding").click(function(e) {
+var submitNewForwarding = function() {
     var form = $('#newForwardingForm');
     var data = JSON.stringify(form.serializeObject());
 
     $.post('../api/forwardings', data, function(response) {
         // TODO: add new forwarding to list
         // ugly hack, see http://stackoverflow.com/questions/11519660/twitter-bootstrap-modal-backdrop-doesnt-disappear
-        e.preventDefault();
-        $('#newForwarding').modal('hide');
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
+        //e.preventDefault();
+        $('#newForwardingDialog').modal('hide');
+        //$('body').removeClass('modal-open');
+        //$('.modal-backdrop').remove();
 
         $('#forwardingsList').append('<div class="row"><div class="span4">' + response.forwarding.source + '</div><div class="span6">' + response.forwarding.destination + '</div><div class="span2"><a href="#"><i class="icon-pencil"></i></a> <a class="deleteForwarding" href="#" data-email="<%= forwarding.source %>"><i class="icon-minus-sign"></i></a></div></div>');
 
@@ -16,7 +16,7 @@ $("#submitNewForwarding").click(function(e) {
     });
 
     return false;
-});
+};
 
 var deleteForwarding = function() {
     var id = $(this).data('email');
@@ -70,3 +70,17 @@ var editForwarding = function(){
 }
 
 $('.editForwarding').click(editForwarding);
+
+var newForwarding = function() {
+    var template =  $( "#newForwardingTemplate" ).html();
+    var dialog = $('#newForwardingDialog');
+    dialog.find('.modal-body').html(template);
+    var footer = dialog.find('.modal-footer');
+    footer.find('.btn-primary').unbind('click');
+    footer.find('.btn-cancel').unbind('click');
+    footer.find('.btn-primary').on('click', submitNewForwarding);
+
+    dialog.modal('show');
+}
+
+$('#newForwarding').click(newForwarding);

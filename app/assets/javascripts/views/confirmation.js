@@ -84,6 +84,7 @@ function _confirm(options) {
     show(dialog.find('.modal-header h3'), title);
     footer.find('.btn-danger').unbind('click').html(ok);
     footer.find('.btn-cancel').unbind('click').html(cancel);
+
     dialog.modal('show');
 
     var $deferred = $.Deferred();
