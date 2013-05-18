@@ -21,7 +21,8 @@ class PostfixAdmin < Sinatra::Application
 
      request.logger.info "#{source} to #{destination}"
 
-     DB[:forwardings].insert(:source => source, :destination => destination)
+     Forwarding.create source: source, destination: destination
+
      Forwarding.filter(:source => source).first.to_json(:root=>true)
    end
 
@@ -32,7 +33,9 @@ class PostfixAdmin < Sinatra::Application
    post  '/api/forwardings/:email', :provides=>'json' do  |email|
      bodyParams = JSON.parse( request.body.read)
      destination = params["destination"].nil? ? bodyParams["destination"]: params["destination"]
-     DB[:forwardings].filter(:source=>email).update(:destination => destination)
+     fwd = Forwarding[email]
+     fwd.destination = destination
+     fwd.save
      200
    end
 
