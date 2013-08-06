@@ -23,7 +23,9 @@ class PostfixAdmin < Sinatra::Application
       else
         DB[:users].filter(:email => user).update(:password => :Encrypt.sql_function(password)) unless DB[:users].filter(:email => email, :password => :Encrypt.sql_function(password)).empty?
       end
+      DB[:users].filter(:email => email)
     end
+    400
   end
 
   get '/api/users/:user', :provides => 'json' do |user|
@@ -37,9 +39,11 @@ class PostfixAdmin < Sinatra::Application
     if password.eql?(password_confirmation) then
       DB[:users].filter(:email => user).update(:password => :Encrypt.sql_function(password))
     end
+    200
   end
 
   delete '/api/users/:user', :provides => 'json' do |user|
     DB[:users].filter(:email => user).delete
+    200
   end
 end

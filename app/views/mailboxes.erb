@@ -2,23 +2,28 @@
 
 <div class="row">
   <div class="span6">
-    <a id="newMailbox" class="btn btn-primary" href="#">
+    <a class="btn btn-primary" id="newMailbox" role="button">
       <i class="icon-plus-sign"></i> <%= t.mailboxes.new %>
     </a>
   </div>
 </div>
+
+<%= erb :'mailboxes/_new' %>
+
+
 <div class="row">
   <div class="span12">
     <hr>
   </div>
 </div>
-
+<div id="mailboxList">
 <% @users.each { |user| %>
     <div class="row">
       <div class="span4"><%= user.email %></div>
       <div class="span4">
-        <a href="#"><i class="icon-pencil"></i></a>
-        <a href="#"><i class="icon-minus-sign"></i></a>
+        <a href="#" class="deleteMailbox" data-email="<%= user.email %>"><i class="icon-minus-sign"></i></a>
       </div>
     </div>
 <% } %>
+</div>
+<%= erb :confirmation %>
