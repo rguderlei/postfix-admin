@@ -4,13 +4,13 @@
       <div class="control-group">
         <label class="control-label" for="source"><%= t.forwardings.source %></label>
         <div class="controls">
-          <input type="text" id="source" name="source">
+          <input type="email" id="source" name="source" required>
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="destination"><%= t.forwardings.source %></label>
+        <label class="control-label" for="destination"><%= t.forwardings.destination %></label>
         <div class="controls">
-          <input type="text" id="destination" name="destination">
+          <input type="text" pattern="^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},?)+$" id="destination" name="destination" required>
         </div>
       </div>
       </fieldset>

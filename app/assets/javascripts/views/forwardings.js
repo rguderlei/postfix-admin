@@ -1,5 +1,8 @@
 var submitNewForwarding = function() {
     var form = $('#newForwardingForm');
+
+    form.checkValidity();
+
     var data = JSON.stringify(form.serializeObject());
 
     $.post('../api/forwardings', data, function(response) {
@@ -58,7 +61,9 @@ var cancelEditing = function(){
 var saveEditing = function(){
     var source = $(this).data('email');
     var destLocation = $(this).closest(".row").find(".editable");
-    var data = $(this).closest(".form-inline").serializeObject();
+    var form = $(this).closest(".form-inline")
+    form.checkValidity();
+    var data = form.serializeObject();
     data.source = source;
 
     $.post('../api/forwardings/' + source, JSON.stringify(data), function(response) {

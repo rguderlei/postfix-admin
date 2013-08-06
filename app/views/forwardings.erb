@@ -18,7 +18,7 @@
 
 <script id="forwardingEditTemplate" type="text/x-jquery-tmpl">
   <form class="form-inline">
-    <input type="text" class="input-small"  name="destination" value="{1}">
+    <input type="text" pattern="^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},?)+$" class="input-small"  name="destination" value="{1}" required>
     <button class="btn btn-primary" type="button" data-email="{0}"><%=  t.actions.save %></button>
     <button class="btn btn-secondary" type="button" data-destination="{1}"><%=  t.actions.cancel %></button>
   </form>
