@@ -16,7 +16,7 @@ set :root, ::File.join( root, 'app' )
 map '/assets' do
   environment = Sprockets::Environment.new
   environment.append_path 'app/assets'
-  environment.append_path 'test' if (PostfixAdmin.development? || PostfixAdmin.test?)
+  environment.append_path 'spec' if (PostfixAdmin.development? || PostfixAdmin.test?)
   run environment
 end
 
