@@ -6,7 +6,6 @@ var submitNewForwarding = function() {
     var data = JSON.stringify(form.serializeObject());
 
     $.post('../api/forwardings', data, function(response) {
-        // TODO: add new forwarding to list
         // ugly hack, see http://stackoverflow.com/questions/11519660/twitter-bootstrap-modal-backdrop-doesnt-disappear
         //e.preventDefault();
         $('#newForwardingDialog').modal('hide');

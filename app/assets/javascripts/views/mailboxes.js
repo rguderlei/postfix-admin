@@ -25,7 +25,6 @@ var submitNewMailbox = function(){
         var data = JSON.stringify(form.serializeObject());
 
         $.post('../api/users', data, function(response) {
-            // TODO: add new forwarding to list
             // ugly hack, see http://stackoverflow.com/questions/11519660/twitter-bootstrap-modal-backdrop-doesnt-disappear
             //e.preventDefault();
             $('#newMailboxDialog').modal('hide');
