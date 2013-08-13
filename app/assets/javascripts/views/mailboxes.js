@@ -32,14 +32,16 @@ var submitNewMailbox = function(){
             //$('.modal-backdrop').remove();
 
             var line = $('<div class="row"><div class="span4">' +
-                response.user.email + '<div class="span4">' +
-                '<a href="#" class="deleteMailbox" data-email="' + response.user.email +'"><i class="icon-minus-sign"></i></a> </div>');
+                response.email + '</div><div class="span4">' +
+                '<a href="#" class="deleteMailbox" data-email="' + response.email +'"><i class="icon-minus-sign"></i></a> </div>');
 
             line.find('.deleteMailbox').click(deleteMailbox);
 
             $('#mailboxList').append(line);
 
             return false;
+        }).fail(function (response) {
+           alert(response);
         });
 
         return false;

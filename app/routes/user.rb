@@ -23,9 +23,10 @@ class PostfixAdmin < Sinatra::Application
       else
         DB[:users].filter(:email => user).update(:password => :Encrypt.sql_function(password)) unless DB[:users].filter(:email => email, :password => :Encrypt.sql_function(password)).empty?
       end
-      DB[:users].filter(:email => email)
+      DB[:users].filter(:email => email).first.to_json(:root=>true)
+    else
+      400
     end
-    400
   end
 
   get '/api/users/:user', :provides => 'json' do |user|
