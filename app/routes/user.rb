@@ -25,7 +25,8 @@ class PostfixAdmin < Sinatra::Application
       end
       DB[:users].filter(:email => email).first.to_json(:root=>true)
     else
-      400
+      status 400
+      body "password and confirmation do not match"
     end
   end
 

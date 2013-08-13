@@ -41,7 +41,7 @@ var submitNewMailbox = function(){
 
             return false;
         }).fail(function (response) {
-           alert(response);
+           $('.modal-body').append("<p class=\"text-error\">" + response.responseText + "</p>")
         });
 
         return false;
