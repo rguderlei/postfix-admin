@@ -13,17 +13,17 @@ class PostfixAdmin < Sinatra::Application
   post '/api/users', :provides => 'json' do
     bodyParams = JSON.parse(request.body.read)
     email = params["email"].nil? ? bodyParams["email"] : params["email"]
-    old_password = params["old_password"].nil? ? bodyParams["old_password"] : params["old_password"]
     password = params["password"].nil? ? bodyParams["password"] : params["password"]
     password_confirmation = params["password_confirmation"].nil? ? bodyParams["password_confirmation"] : params["password_confirmation"]
 
     if password.eql?(password_confirmation) then
       if DB[:users].filter(:email => email).empty?
         DB[:users].insert(:email => email, :password => :Encrypt.sql_function(password))
+        DB[:users].filter(:email => email).first.to_json(:root=>true)
       else
-        DB[:users].filter(:email => user).update(:password => :Encrypt.sql_function(password)) unless DB[:users].filter(:email => email, :password => :Encrypt.sql_function(password)).empty?
+        status 400
+        body "user already exists"
       end
-      DB[:users].filter(:email => email).first.to_json(:root=>true)
     else
       status 400
       body "password and confirmation do not match"
@@ -36,10 +36,11 @@ class PostfixAdmin < Sinatra::Application
 
   post '/api/users/:user', :provides => 'json' do |user|
     bodyParams = JSON.parse(request.body.read)
+    old_password = params["old_password"].nil? ? bodyParams["old_password"] : params["old_password"]
     password = params["password"].nil? ? bodyParams["password"] : params["password"]
     password_confirmation = params["password_confirmation"].nil? ? bodyParams["password_confirmation"] : params["password_confirmation"]
     if password.eql?(password_confirmation) then
-      DB[:users].filter(:email => user).update(:password => :Encrypt.sql_function(password))
+      DB[:users].filter(:email => user, :password =>:Encrypt.sql_function(old_password)).update(:password => :Encrypt.sql_function(password))
     end
     200
   end
