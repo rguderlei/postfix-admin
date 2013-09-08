@@ -2,13 +2,14 @@
   Password ändern
 </h2>
 
-<form id="change_password_form" class="form-horizontal" action="/mailboxes" method="get">
+<!-- TODO: i18n -->
+<form id="change_password_form" class="form-horizontal">
   <fieldset>
     <div class="control-group">
       <label class="control-label" for="email">Email-Adresse</label>
 
       <div class="controls">
-        <input name="email" type="text"> </input>
+        <input name="email" type="email" required id="email_field"> </input>
       </div>
     </div>
     <div class="control-group">
@@ -32,7 +33,6 @@
         <input name="password_confirmation" type="password"> </input>
       </div>
     </div>
-    <input id="change_password" type="submit" class="btn-primary">     </input>
-
   </fieldset>
 </form>
+<a id="update_password" href="#" class="btn btn-primary">Ok</a>

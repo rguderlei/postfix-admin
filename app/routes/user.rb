@@ -18,15 +18,15 @@ class PostfixAdmin < Sinatra::Application
 
     if password.eql?(password_confirmation) then
       if DB[:users].filter(:email => email).empty?
-        DB[:users].insert(:email => email, :password => :Encrypt.sql_function(password))
+        DB[:users].insert(:email => email, :password => Sequel.function(:ENCRYPT,password))
         DB[:users].filter(:email => email).first.to_json(:root=>true)
       else
         status 400
-        body "user already exists"
+        body "user already exists"    #TODO i18n
       end
     else
       status 400
-      body "password and confirmation do not match"
+      body "password and confirmation do not match"  #TODO i18n
     end
   end
 
@@ -39,10 +39,21 @@ class PostfixAdmin < Sinatra::Application
     old_password = params["old_password"].nil? ? bodyParams["old_password"] : params["old_password"]
     password = params["password"].nil? ? bodyParams["password"] : params["password"]
     password_confirmation = params["password_confirmation"].nil? ? bodyParams["password_confirmation"] : params["password_confirmation"]
-    if password.eql?(password_confirmation) then
-      DB[:users].filter(:email => user, :password =>:Encrypt.sql_function(old_password)).update(:password => :Encrypt.sql_function(password))
+    if password.eql?(password_confirmation)
+      user = User.first(:email=>user, :password => Sequel.function(:ENCRYPT, old_password, :password))
+      if !user.nil?
+        user.password = Sequel.function(:ENCRYPT, password)
+        user.save
+        200
+      else
+        status 400
+        body "old password is wrong"   #TODO i18n
+      end
+    else
+      status 400
+      body "password and confirmation do not match"  #TODO i18n
     end
-    200
+
   end
 
   delete '/api/users/:user', :provides => 'json' do |user|

@@ -61,7 +61,7 @@ var saveEditing = function(){
     var source = $(this).data('email');
     var destLocation = $(this).closest(".row").find(".editable");
     var form = $(this).closest(".form-inline")
-    form.checkValidity();
+    form[0].checkValidity();
     var data = form.serializeObject();
     data.source = source;
 

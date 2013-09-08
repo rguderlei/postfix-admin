@@ -1,4 +1,5 @@
 require 'sequel'
+require 'logger'
 
 config = YAML.load_file('conf/config.yml')
 
@@ -10,6 +11,8 @@ config = YAML.load_file('conf/config.yml')
 
 DB = Sequel.connect(:adapter=>'mysql2', :host=> database_host , :database=>database_name,
                     :user=>database_user, :password=>database_password)
+DB.loggers << Logger.new($stdout)
+
 Sequel::Model.plugin :json_serializer
 
 require_relative 'user'
